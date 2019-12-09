@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     libkrb5-dev \
     libxml2-dev \
     libpq-dev \
+    libssl-dev \
     git \
     zip \
     && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
