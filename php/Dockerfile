@@ -9,11 +9,15 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     libpng-dev \
     libzip-dev \
+    zlib1g-dev \
+    libicu-dev \
+    g++ \
     git \
     zip \
     && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-configure gd --with-jpeg \
-    && docker-php-ext-install imap soap pdo pdo_pgsql gd zip \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install imap soap pdo pdo_pgsql gd zip intl exif \
     && apt-get clean -y && apt-get autoclean -y && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
