@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-configure gd --with-jpeg \
     && docker-php-ext-configure intl \
-    && docker-php-ext-install imap soap pdo pdo_pgsql pdo_mysql gd zip intl exif opcache \
+    && docker-php-ext-install imap soap pdo pdo_pgsql pdo_mysql gd zip intl exif opcache bcmath \
     && apt-get clean -y && apt-get autoclean -y && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
