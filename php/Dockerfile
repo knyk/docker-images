@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libssl-dev \
     libjpeg62-turbo-dev \
+    libjpeg-turbo-progs \
     libpng-dev \
     libzip-dev \
     zlib1g-dev \
