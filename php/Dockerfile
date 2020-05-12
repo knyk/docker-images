@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libssl-dev \
     libjpeg62-turbo-dev \
-    libjpeg-turbo-progs \
     libpng-dev \
     libzip-dev \
     zlib1g-dev \
@@ -15,6 +14,12 @@ RUN apt-get update && apt-get install -y \
     g++ \
     git \
     zip \
+    autoconf \
+    automake \
+    libtool \
+    nasm \
+    pkgconf \
+    tar \
     && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-configure gd --with-jpeg \
     && docker-php-ext-configure intl \
@@ -23,3 +28,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+ADD https://github.com/mozilla/mozjpeg/archive/v3.3.1.tar.gz ./
+RUN tar -xzf v3.3.1.tar.gz
+RUN cd mozjpeg-3.3.1 && \
+	autoreconf -fiv && \
+	./configure --with-jpeg8 && \
+	make && \
+	make install
